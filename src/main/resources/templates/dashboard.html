@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Student Management System</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+
+    <!-- Custom Dashboard CSS -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">SMS</div>
+
+            <div>
+                <h5>Student Portal</h5>
+                <small>Management System</small>
+            </div>
+        </div>
+
+        <div class="sidebar-menu">
+
+            <p class="menu-heading">MAIN MENU</p>
+
+            <a th:href="@{/dashboard}" class="menu-link active">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a th:href="@{/students}" class="menu-link">
+                <i class="bi bi-people"></i>
+                <span>Students</span>
+            </a>
+
+            <a th:href="@{/courses}" class="menu-link">
+                <i class="bi bi-book"></i>
+                <span>Courses</span>
+            </a>
+
+            <a th:href="@{/attendance}" class="menu-link">
+                <i class="bi bi-calendar-check"></i>
+                <span>Attendance</span>
+            </a>
+
+            <a th:href="@{/marks}" class="menu-link">
+                <i class="bi bi-journal-text"></i>
+                <span>Marks & Results</span>
+            </a>
+
+            <p class="menu-heading mt-4">ACCOUNT</p>
+
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="menu-link logout-link">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+
+        </div>
+
+        <div class="sidebar-bottom">
+            <small>Student Management System</small>
+            <small>Version 1.0</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h4>Dashboard</h4>
+                <p>Welcome to your student management portal.</p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div>
+                    <strong th:text="${loggedInUsername}">Administrator</strong>
+<small>Logged-in Account</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD CONTENT -->
+        <section class="dashboard-content">
+
+            <!-- WELCOME BANNER -->
+            <div class="welcome-banner">
+
+                <div>
+                    <span class="welcome-label">ADMIN OVERVIEW</span>
+
+                    <h2>Welcome Back, Admin!</h2>
+
+                    <p>
+                        Manage your students, courses, attendance
+                        and academic records in one place.
+                    </p>
+                </div>
+
+                <div class="welcome-icon">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS CARDS -->
+            <div class="section-heading">
+                <h5>Institution Overview</h5>
+                <p>Quick summary of academic information</p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- TOTAL STUDENTS -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card blue-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon blue">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <span class="stat-label">STUDENTS</span>
+                        </div>
+
+                        <h2 th:text="${totalStudents}">0</h2>
+
+                        <p>Total Students</p>
+
+                        <a th:href="@{/students}">
+                            View Students <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- TOTAL COURSES -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card purple-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon purple">
+                                <i class="bi bi-book-fill"></i>
+                            </div>
+                            <span class="stat-label">COURSES</span>
+                        </div>
+
+                        <h2 th:text="${totalCourses}">0</h2>
+
+                        <p>Total Courses</p>
+
+                        <a th:href="@{/courses}">
+                            View Courses <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- PRESENT -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card green-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon green">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <span class="stat-label">ATTENDANCE</span>
+                        </div>
+
+                        <h2 th:text="${presentCount}">0</h2>
+
+                        <p>Students Present</p>
+
+                        <a th:href="@{/attendance}">
+                            View Attendance <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- ABSENT -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card orange-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon orange">
+                                <i class="bi bi-person-x-fill"></i>
+                            </div>
+                            <span class="stat-label">ABSENT</span>
+                        </div>
+
+                        <h2 th:text="${absentCount}">0</h2>
+
+                        <p>Students Absent</p>
+
+                        <a th:href="@{/attendance}">
+                            View Details <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- TOTAL MARKS -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card red-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon red">
+                                <i class="bi bi-journal-check"></i>
+                            </div>
+                            <span class="stat-label">ACADEMICS</span>
+                        </div>
+
+                        <h2 th:text="${totalMarks}">0</h2>
+
+                        <p>Total Marks Records</p>
+
+                        <a th:href="@{/marks}">
+                            View Marks <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- AVERAGE PERCENTAGE -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="stat-card teal-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon teal">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <span class="stat-label">PERFORMANCE</span>
+                        </div>
+
+                        <h2 th:text="${averagePercentage + '%'}">0%</h2>
+
+                        <p>Average Marks Percentage</p>
+
+                        <a th:href="@{/marks}">
+                            View Results <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ATTENDANCE AND QUICK ACTIONS -->
+            <div class="row g-4 mt-2">
+
+                <!-- ATTENDANCE OVERVIEW -->
+                <div class="col-lg-7">
+
+                    <div class="content-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <h5>Attendance Overview</h5>
+                                <p>Overall student attendance percentage</p>
+                            </div>
+
+                            <div class="card-heading-icon">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="attendance-number"
+                             th:text="${attendancePercentage + '%'}">
+                            0%
+                        </div>
+
+                        <div class="progress attendance-progress">
+
+                            <div class="progress-bar bg-success"
+                                 role="progressbar"
+                                 th:style="'width: ' + ${attendancePercentage} + '%' "
+                                 th:attr="aria-valuenow=${attendancePercentage}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                            </div>
+
+                        </div>
+
+                        <p class="attendance-note">
+                            Overall attendance performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+                <div class="col-lg-5">
+
+                    <div class="content-card quick-actions">
+
+                        <h5>Quick Actions</h5>
+                        <p>Manage your institution easily</p>
+
+                        <a th:href="@{/students/new}">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span>Add New Student</span>
+                            <i class="bi bi-arrow-right ms-auto"></i>
+                        </a>
+
+                        <a th:href="@{/courses}">
+                            <i class="bi bi-journal-plus"></i>
+                            <span>Manage Courses</span>
+                            <i class="bi bi-arrow-right ms-auto"></i>
+                        </a>
+
+                        <a th:href="@{/attendance}">
+                            <i class="bi bi-calendar-plus"></i>
+                            <span>Mark Attendance</span>
+                            <i class="bi bi-arrow-right ms-auto"></i>
+                        </a>
+
+                        <a th:href="@{/marks}">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Manage Marks</span>
+                            <i class="bi bi-arrow-right ms-auto"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                <p>
+                    © 2026 Student Management System.
+                    All rights reserved.
+                </p>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

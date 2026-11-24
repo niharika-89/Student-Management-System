@@ -1,0 +1,302 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f3f6fb;
+    min-height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* LEFT SECTION */
+
+
+.login-left {
+    width: 55%;
+    min-height: 100vh;
+    padding: 45px 8%;
+
+    background:
+        linear-gradient(
+            rgba(8, 30, 57, 0.72),
+            rgba(8, 30, 57, 0.82)
+        ),
+        url('/images/pic1.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
+.left-footer {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* RIGHT SECTION */
+
+.login-right {
+    width: 45%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+    background: #f5f7fb;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 43px 38px;
+    border-radius: 18px;
+    box-shadow: 0 15px 50px rgba(24, 54, 91, 0.09);
+}
+
+.mobile-brand {
+    display: none;
+    font-weight: 800;
+    color: #174d7c;
+    margin-bottom: 25px;
+}
+
+.login-heading {
+    margin-bottom: 32px;
+}
+
+.login-heading h2 {
+    font-size: 30px;
+    color: #163451;
+    margin-bottom: 10px;
+}
+
+.login-heading p {
+    color: #7b899a;
+    font-size: 14px;
+}
+
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 23px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #30465d;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dce3eb;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    background: #fbfcfe;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #2677b8;
+    box-shadow: 0 0 0 3px rgba(38,119,184,0.10);
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 65px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #2677b8;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+/* OPTIONS */
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 8px 0 28px;
+    font-size: 12px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #637488;
+}
+
+.forgot {
+    color: #2474b5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+
+/* BUTTON */
+
+.login-button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #174d7c, #267eb7);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-button span {
+    margin-left: 8px;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #103657, #1a6398);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(23,77,124,0.22);
+}
+
+
+/* MESSAGES */
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #b42318;
+    background: #fff0ef;
+    border: 1px solid #ffd4d0;
+}
+
+.success-message {
+    color: #167447;
+    background: #eaf8f0;
+    border: 1px solid #c7ecd7;
+}
+
+.security-note {
+    text-align: center;
+    margin-top: 28px;
+    color: #8290a0;
+    font-size: 12px;
+}
+
+.back-home {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.back-home a {
+    color: #2674aa;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+
+    .login-left {
+        width: 45%;
+        padding: 35px 5%;
+    }
+
+    .login-right {
+        width: 55%;
+        padding: 20px;
+    }
+
+    .login-card {
+        padding: 35px 25px;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left {
+        display: none;
+    }
+
+    .login-right {
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .login-card {
+        padding: 32px 24px;
+    }
+
+    .mobile-brand {
+        display: block;
+        font-size: 13px;
+    }
+
+    .login-heading h2 {
+        font-size: 27px;
+    }
+
+}
