@@ -35,6 +35,9 @@ public class StudentService {
     }
 
     public Student saveStudent(Student student) {
+
+        student.setActive(true);
+
         return studentRepository.save(student);
     }
 

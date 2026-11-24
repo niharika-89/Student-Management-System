@@ -30,6 +30,8 @@ public class Student {
 
     @Column(length = 1000)
     private String address;
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -100,5 +102,12 @@ public class Student {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
